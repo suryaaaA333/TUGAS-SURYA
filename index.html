@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Profil Siswa - RPL SMK</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-blue: #0d6efd;
+            --dark-navy: #0a192f;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+            color: #333;
+            /* Extra padding top so fixed-top navbar doesn't cover Hero section */
+            padding-top: 70px;
+        }
+
+        /* Navbar Custom Styling (Fixed Top) */
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.98) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: #0d6efd !important;
+            border-bottom: 2px solid #0d6efd;
+        }
+
+        /* Hero Section Custom Styling */
+        .hero-section {
+            background: linear-gradient(135deg, #0a192f 0%, #1e3c72 100%);
+            color: white;
+            padding: 100px 0 100px;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+
+        .hero-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Card Styling */
+        .custom-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            overflow: hidden;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        /* Jurusan Header Image Styling */
+        .jurusan-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Section Headings */
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        /* Nav Pills Styling */
+        .nav-pills .nav-link {
+            color: var(--dark-navy);
+            background-color: #e9ecef;
+            border-radius: 30px;
+            padding: 10px 22px;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Progress Bar Styling */
+        .progress {
+            height: 12px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+            border-radius: 10px;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-navy);
+            color: #a8b2d1;
+            padding-top: 60px;
+        }
+
+        footer h5 {
+            color: white;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: #a8b2d1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100" tabindex="0">
+
+    <!-- 1. HEADER / NAVBAR (FIXED-TOP) -->
+    <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#beranda">
+                <i class="bi bi-code-slash text-primary fs-3 me-2"></i>
+                <span>SISWA RPL</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang"><i class="bi bi-person me-1"></i> Tentang Saya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#jurusan"><i class="bi bi-journal-bookmark me-1"></i> Jurusan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#denah"><i class="bi bi-geo-alt me-1"></i> Denah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kontak"><i class="bi bi-envelope me-1"></i> Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. BERANDA (HERO SECTION) -->
+    <section id="beranda" class="hero-section text-center text-lg-start">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Foto Profil Siswa" class="rounded-circle hero-img img-fluid" onerror="this.src='https://placehold.co/400x400/0a192f/ffffff?text=Foto+Siswa'">
+                </div>
+                <div class="col-lg-8">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill fs-6 mb-3">
+                        <i class="bi bi-check-circle-fill me-1"></i> Siswa Rekayasa Perangkat Lunak
+                    </span>
+                    <h1 class="display-4 fw-bold mb-2">Halo, Saya Ahmad Pratama</h1>
+                    <h3 class="h4 text-light opacity-75 mb-3">Siswa SMK Negeri 1 Medan</h3>
+                    <p class="lead text-light opacity-75 mb-4">
+                        Mengembangkan aplikasi web modern, responsif, dan fungsional. Berpengalaman dalam HTML, CSS, JavaScript, dan PHP Bootstrap.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                        <a href="#tentang" class="btn btn-primary btn-lg rounded-pill px-4 shadow">
+                            <i class="bi bi-person-badge me-2"></i>Lihat Profil
+                        </a>
+                        <a href="#kontak" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                            <i class="bi bi-chat-dots me-2"></i>Hubungi Saya
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TENTANG SAYA -->
+    <section id="tentang" class="py-5">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Tentang Saya</h2>
+            <div class="row g-4 mt-2">
+                <!-- Data Diri Card -->
+                <div class="col-lg-6">
+                    <div class="card custom-card h-100 p-4">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold text-primary mb-4">
+                                <i class="bi bi-card-heading me-2"></i>Data Diri
+                            </h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-person me-2"></i>Nama Lengkap:</span>
+                                    <span class="fw-semibold">Ahmad Pratama</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-book me-2"></i>Kelas:</span>
+                                    <span class="fw-semibold">XII RPL 1</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-upc-scan me-2"></i>NIS:</span>
+                                    <span class="fw-semibold">202310452</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-house-door me-2"></i>Alamat:</span>
+                                    <span class="fw-semibold text-end">Jl. Setia Gg. Rukun No. 1A, Gaperta Ujung</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keahlian Card -->
+                <div class="col-lg-6">
+                    <div class="card custom-card h-100 p-4">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold text-primary mb-4">
+                                <i class="bi bi-tools me-2"></i>Bar Keahlian
+                            </h4>
+                            
+                            <!-- HTML / CSS -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class="bi bi-filetype-html text-danger me-2"></i>HTML / CSS</span>
+                                    <span class="fw-bold text-primary">90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- JavaScript -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class="bi bi-filetype-js text-warning me-2"></i>JavaScript</span>
+                                    <span class="fw-bold text-primary">75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- PHP / MySQL -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class="bi bi-filetype-php text-primary me-2"></i>PHP - MySQL</span>
+                                    <span class="fw-bold text-primary">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- Git & GitHub -->
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class="bi bi-git text-danger me-2"></i>Git & GitHub</span>
+                                    <span class="fw-bold text-primary">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. JURUSAN (NAV PILLS / TABS WITH IMAGES) -->
+    <section id="jurusan" class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Visi & Misi Enam Jurusan</h2>
+            <p class="text-center text-muted mb-4">Pilih tab jurusan di bawah untuk melihat informasi visi dan misi beserta gambaran visual masing-masing jurusan.</p>
+
+            <!-- Nav Pills -->
+            <ul class="nav nav-pills justify-content-center mb-4" id="jurusanTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="rpl-tab" data-bs-toggle="pill" data-bs-target="#rpl" type="button" role="tab" aria-controls="rpl" aria-selected="true">RPL</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="dkv-tab" data-bs-toggle="pill" data-bs-target="#dkv" type="button" role="tab" aria-controls="dkv" aria-selected="false">DKV</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="peksos-tab" data-bs-toggle="pill" data-bs-target="#peksos" type="button" role="tab" aria-controls="peksos" aria-selected="false">PEKSOS</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tki-tab" data-bs-toggle="pill" data-bs-target="#tki" type="button" role="tab" aria-controls="tki" aria-selected="false">TKI</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="animasi-tab" data-bs-toggle="pill" data-bs-target="#animasi" type="button" role="tab" aria-controls="animasi" aria-selected="false">ANIMASI</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pspt-tab" data-bs-toggle="pill" data-bs-target="#pspt" type="button" role="tab" aria-controls="pspt" aria-selected="false">PSPT</button>
+                </li>
+            </ul>
+
+            <!-- Tab Contents -->
+            <div class="tab-content" id="jurusanTabContent">
+                
+                <!-- 1. RPL Tab -->
+                <div class="tab-pane fade show active" id="rpl" role="tabpanel" aria-labelledby="rpl-tab">
+                    <div class="card custom-card border-start border-primary border-4">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Jurusan Rekayasa Perangkat Lunak" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/0d6efd/ffffff?text=Gambar+RPL'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-primary fw-bold mb-3"><i class="bi bi-laptop me-2"></i>Rekayasa Perangkat Lunak (RPL)</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Menjadi program keahlian yang unggul dalam mencetak programmer dan pengembang perangkat lunak yang profesional, inovatif, serta berdaya saing global.</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Mendidik siswa dalam penguasaan logika pemrograman dan rekayasa perangkat lunak.</li>
+                                <li>Melatih pembuatan aplikasi berbasis web, desktop, dan mobile.</li>
+                                <li>Menerapkan standar industri software engineering dalam proses pembelajaran.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. DKV Tab -->
+                <div class="tab-pane fade" id="dkv" role="tabpanel" aria-labelledby="dkv-tab">
+                    <div class="card custom-card border-start border-warning border-4">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1200" alt="Jurusan Desain Komunikasi Visual" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/ffc107/ffffff?text=Gambar+DKV'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-warning fw-bold mb-3"><i class="bi bi-palette me-2"></i>Desain Komunikasi Visual (DKV)</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Menghasilkan desainer grafis dan komunikator visual yang kreatif, adaptif terhadap teknologi media digital, serta berjiwa wirausaha.</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Mengembangkan pemikiran kreatif dalam solusi desain media visual.</li>
+                                <li>Menguasai perangkat lunak desain industri seperti Adobe Illustrator dan Photoshop.</li>
+                                <li>Membangun portofolio karya desain profesional bernilai jual tinggi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. PEKSOS Tab -->
+                <div class="tab-pane fade" id="peksos" role="tabpanel" aria-labelledby="peksos-tab">
+                    <div class="card custom-card border-start border-success border-4">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1200" alt="Jurusan Pekerjaan Sosial" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/198754/ffffff?text=Gambar+PEKSOS'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-success fw-bold mb-3"><i class="bi bi-people me-2"></i>Pekerjaan Sosial (PEKSOS)</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Mewujudkan tenaga pelayanan sosial yang berintegritas, berempati tinggi, dan terampil dalam penanganan masalah sosial masyarakat.</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Memberikan pemahaman mendalam tentang corporate social responsibility & metodologi pekerjaan sosial.</li>
+                                <li>Melatih keterampilan komunikasi dan pendampingan psikososial.</li>
+                                <li>Mengadakan praktik lapangan di lembaga-lembaga sosial terpercaya.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. TKI Tab -->
+                <div class="tab-pane fade" id="tki" role="tabpanel" aria-labelledby="tki-tab">
+                    <div class="card custom-card border-start border-danger border-4">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1200" alt="Jurusan Teknik Komputer dan Informatika" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/dc3545/ffffff?text=Gambar+TKI'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-danger fw-bold mb-3"><i class="bi bi-hdd-network me-2"></i>Teknik Komputer dan Informatika (TKI)</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Menciptakan teknisi jaringan komputer dan administrator sistem yang andal, kompeten, serta siap menghadapi era Internet of Things (IoT).</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Menguasai perakitan hardware, instalasi OS, dan konfigurasi router network.</li>
+                                <li>Mengintegrasikan keamanan jaringan dan administrasi server secara efisien.</li>
+                                <li>Menyiapkan sertifikasi keahlian jaringan tingkat nasional dan internasional.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. ANIMASI Tab -->
+                <div class="tab-pane fade" id="animasi" role="tabpanel" aria-labelledby="animasi-tab">
+                    <div class="card custom-card border-start border-info border-4">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200" alt="Jurusan Animasi" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/0dcaf0/ffffff?text=Gambar+ANIMASI'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-info fw-bold mb-3"><i class="bi bi-film me-2"></i>Animasi</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Menjadi pusat pencetak animator 2D dan 3D yang produktif, berkarakter, serta mampu menghasilkan karya sinematik berkualitas.</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Mengajarkan prinsip-prinsip dasar animasi dan pembuatan alur cerita (storyboarding).</li>
+                                <li>Mengembangkan kemampuan 3D modeling, rigging, dan rendering.</li>
+                                <li>Memproduksi karya animasi pendek berstandar studio profesional.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. PSPT Tab -->
+                <div class="tab-pane fade" id="pspt" role="tabpanel" aria-labelledby="pspt-tab">
+                    <div class="card custom-card border-start border-dark border-4">
+                        <img src="https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&q=80&w=1200" alt="Jurusan PSPT" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/212529/ffffff?text=Gambar+PSPT'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-dark fw-bold mb-3"><i class="bi bi-camera-video me-2"></i>Produksi dan Siaran Program Televisi (PSPT)</h3>
+                            <h5 class="fw-bold mt-3">Visi:</h5>
+                            <p class="text-muted">Menciptakan insan pertelevisian dan media kreatif yang profesional, etis, dan mahir dalam broadcasting multimedia.</p>
+                            <h5 class="fw-bold mt-3">Misi:</h5>
+                            <ul class="text-muted">
+                                <li>Melatih teknik tata kamera, tata artistik, serta pengeditan video digital.</li>
+                                <li>Menyelenggarakan simulasi produksi program televisi live dan rekaman.</li>
+                                <li>Mengasah kemampuan manajemen produksi media dan penulisan naskah siaran.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DENAH RUMAH KE SEKOLAH -->
+    <section id="denah" class="py-5">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Denah Rumah ke Sekolah</h2>
+            
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <!-- Responsive Ratio 16x9 Container -->
+                    <div class="map-container ratio ratio-16x9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.983944682054!2d98.6250!3d3.5900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMzUnMjQuMCJOIDk4wrAzNyczMC4wIkU!5e0!3m2!1sid!2sid!4v1600000000000!5m2!1sid!2sid" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card custom-card p-4">
+                        <h4 class="fw-bold text-primary mb-3"><i class="bi bi-map me-2"></i>Informasi Rute</h4>
+                        
+                        <div class="mb-3">
+                            <label class="fw-bold text-muted d-block"><i class="bi bi-geo-alt text-danger me-1"></i> Titik Awal (Rumah):</label>
+                            <p class="mb-0 fw-semibold">Jl. Setia Gg. Rukun No. 1A, Gaperta Ujung</p>
+                        </div>
+                        
+                        <hr>
+
+                        <div class="mb-4">
+                            <label class="fw-bold text-muted d-block"><i class="bi bi-building text-primary me-1"></i> Lokasi Tujuan (Sekolah):</label>
+                            <p class="mb-0 fw-semibold">Jl. Patriot No. 20, Sunggal</p>
+                        </div>
+
+                        <!-- Direct Route Button -->
+                        <a href="https://www.google.com/maps/dir/?api=1&origin=Jl.+Setia+Gg.+Rukun+No.+1A,+Gaperta+Ujung&destination=Jl.+Patriot+No.+20,+Sunggal" 
+                           target="_blank" 
+                           class="btn btn-primary btn-lg w-100 rounded-pill shadow">
+                            <i class="bi bi-sign-turn-right me-2"></i>Petunjuk Rute / Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. KONTAK -->
+    <section id="kontak" class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Hubungi Saya</h2>
+            
+            <div class="row g-4 mt-2 justify-content-center">
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-envelope-at text-primary fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">Email</h5>
+                            <p class="text-muted">ahmad.pratama@smk.sch.id</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-whatsapp text-success fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">WhatsApp</h5>
+                            <p class="text-muted">+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-github text-dark fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">GitHub</h5>
+                            <p class="text-muted">github.com/ahmad-rpl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h5 class="d-flex align-items-center mb-3">
+                        <i class="bi bi-code-slash text-primary me-2"></i> Profil Siswa RPL
+                    </h5>
+                    <p>Website portofolio dan profil resmi siswa Jurusan Rekayasa Perangkat Lunak (RPL). Dibuat menggunakan HTML, CSS, dan Bootstrap 5 responsif untuk kebutuhan dipublikasikan di GitHub Pages.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Menu Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#beranda"><i class="bi bi-chevron-right me-1"></i> Beranda</a></li>
+                        <li class="mb-2"><a href="#tentang"><i class="bi bi-chevron-right me-1"></i> Tentang Saya</a></li>
+                        <li class="mb-2"><a href="#jurusan"><i class="bi bi-chevron-right me-1"></i> Jurusan</a></li>
+                        <li class="mb-2"><a href="#denah"><i class="bi bi-chevron-right me-1"></i> Denah Rute</a></li>
+                        <li class="mb-2"><a href="#kontak"><i class="bi bi-chevron-right me-1"></i> Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="mb-3">Informasi Sekolah</h5>
+                    <p class="mb-1"><i class="bi bi-building me-2 text-primary"></i> SMK Negeri 1 Medan</p>
+                    <p class="mb-1"><i class="bi bi-geo-alt me-2 text-primary"></i> Jl. Patriot No. 20, Sunggal</p>
+                    <p class="mb-1"><i class="bi bi-envelope me-2 text-primary"></i> info@smknegeri1.sch.id</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 2026 Ahmad Pratama - Jurusan RPL. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS (termasuk Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+```
